@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    RA: <input id="input_RA">
+    Nota: <input id="input_nota">
+    <button onclick="guardar()">
+        Guardar
+    </button>
+    <br>
+    Critério: <input id="input_criterio">
+    <button onclick="analisar()">
+        Analisar
+    </button>
+    <div id="div_resultado"></div>
+</body>
+</html>
+<script>
+    const lista_alunos = []
+    function guardar() {
+        var nota = Number(input_nota.value)
+        var ra = Number(input_RA.value)
+        const aluno = {
+            nota: nota,
+            ra: ra,
+        }
+        lista_alunos.push(aluno)
+    }
+
+    function analisar() {
+        const criterio = input_criterio.value
+        if (criterio != "p" && criterio != "i") {
+            alert("valor invalido, entre com P ou I")
+        } else {
+            var acumulador = 0;
+            var qtd_alunos = 0;
+            for (var posicao = 0;
+                 posicao < lista_alunos.length;
+                 posicao++ ) {
+                const aluno = lista_alunos[posicao]
+
+                if (criterio == "p") {
+                    if (aluno.ra % 2 == 0) {
+                        acumulador += aluno.nota;
+                        qtd_alunos += 1;
+                    }
+                } else {
+                    if (aluno.ra % 2 != 0) {
+                        acumulador += aluno.nota;
+                        qtd_alunos += 1;
+                    }
+                }
+            }
+
+            const media = acumulador / qtd_alunos;
+
+            var acima_da_media = 0;
+            var acumulador_media = 0;
+            for (var posicao = 0;
+                 posicao < lista_alunos.length;
+                 posicao++) {
+
+                 const aluno = lista_alunos[posicao];
+
+                 if (aluno.nota >= media) {
+                    acima_da_media += 1;
+                    acumulador_media += aluno.nota;
+                    div_resultado.innerHTML += `
+                        Aluno com RA = ${aluno.ra} e nota ${aluno.nota} foi selecionado pois a média é 
+                        ${media}<br>
+                    `
+                 }
+            }
+
+            const media_da_media = acumulador_media / acima_da_media;
+
+            div_resultado.innerHTML += `
+                Acima da média: ${acima_da_media}<br>
+                Média da média: ${media_da_media}<br>
+            `
+
+        }
+    }
+</script>

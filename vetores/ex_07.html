@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Aluno: <input id="input_aluno" /><br />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="div_resultado"></div>
+  </body>
+</html>
+
+<script>
+    var lista_alunos = [];
+    function cadastrar() {
+        var aluno = input_aluno.value
+        lista_alunos.push(aluno)
+    }
+
+    function pesquisar() {
+        var aluno_pesquisado = input_aluno.value
+        
+        var quantidade_aluno = 0;
+        for(var posicao = 0;
+        posicao < lista_alunos.length;
+        posicao++) {
+            if (aluno_pesquisado == lista_alunos[posicao]) {
+                quantidade_aluno += 1
+            }
+        }
+
+        var mensagem = "O aluno não aparece na lista"
+        if (quantidade_aluno > 0) {
+            mensagem = `O aluno aparece 
+                    ${quantidade_aluno} vezes` 
+        }
+        alert(mensagem)
+
+        // if (quantidade_aluno > 0) {
+        //     alert(`O aluno aparece 
+        //             ${quantidade_aluno} vezes`)
+        // }
+    }
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Viagem: <input id="input_viagem" /><br />
+    <button onclick="cadastrar_viagem()">Cadastrar viagem</button>
+    Pesquisa: <input id="input_pesquisa" /><br />
+    <button onclick="relembrar_viagem()">Relembrar viagem</button>
+    <div id="div_resultado"></div>
+  </body>
+</html>
+<script>
+  var lista_viagens = [""];
+  function cadastrar_viagem() {
+    var viagem = input_viagem.value;
+    lista_viagens.push(viagem);
+  }
+
+  function relembrar_viagem() {
+    var pesquisa = Number(input_pesquisa.value)
+
+    if (pesquisa <= lista_viagens.length) {
+        div_resultado.innerHTML = 
+            lista_viagens[pesquisa - 1]
+    } else {
+        div_resultado.innerHTML = `
+            Você não fez a ${pesquisa}° viagem !
+        `
+    }
+
+  }
+
+</script>
